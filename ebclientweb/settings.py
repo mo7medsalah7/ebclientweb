@@ -61,7 +61,7 @@ AUTH_USER_MODEL = 'clientes.CustomUser'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [''],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,12 +80,25 @@ WSGI_APPLICATION = 'ebclientweb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ebdb',
+        'USER': 'ebroot',
+        'PASSWORD': 'Pollitoloco01!',
+        'HOST': 'awseb-e-pxidmzgxnv-stack-awsebrdsdatabase-3agjrc8gnv1l.clve3hepnuyh.us-west-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
 
 
 # Password validation
@@ -124,15 +137,30 @@ DROPBOX_APP_SECRET = '7ecb8qxcndf23j7'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 CRISPY_TEMPLATE_PACK = 'bootstrap4' 
-#STATIC_URL = 'static/'
 
-STATIC_URL = '/static/'
+
+
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
+STATIC_ROOT= '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_DIRS = (
+   os.path.join(BASE_DIR, 'static'),
+)
+
+
+
 MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
